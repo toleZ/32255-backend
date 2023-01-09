@@ -6,7 +6,7 @@ class ProductManager {
   constructor(path) {
     this.path = path;
 
-    fs.writeFileSync(path, JSON.stringify([]));
+    if (!fs.existsSync(path)) fs.writeFileSync(path, JSON.stringify([]));
   }
 
   getProducts = () => {
@@ -27,7 +27,9 @@ class ProductManager {
   addProduct = (product) => {
     const products = this.getProducts();
 
-    const newProduct = { id: this.#id++, ...product };
+    while (products.some((prod) => prod.id === this.#id)) this.#id++;
+
+    const newProduct = { id: this.#id, ...product };
 
     products.push(newProduct);
     fs.writeFileSync(this.path, JSON.stringify(products));
