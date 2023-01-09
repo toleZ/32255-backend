@@ -59,11 +59,3 @@ class ProductManager {
     return deletedProduct;
   };
 }
-
-const p1 = { name: "John", lastname: "Doe" };
-const p2 = { name: "Mark", lastname: "Zuk" };
-
-const pe = new ProductManager("./ejemplo.txt");
-pe.addProduct(p1);
-pe.addProduct(p2);
-pe.updateProduct(1, { name: "Markus" });
