@@ -1,5 +1,6 @@
 class ProductManager {
   #products;
+  #id = 0;
 
   constructor() {
     this.#products = [];
@@ -10,7 +11,7 @@ class ProductManager {
     if (alredyCode)
       throw error(`There is already a product with the code: ${code}`);
 
-    const id = this.#products.length;
+    const id = this.#id++;
     const product = { id, tile, description, price, thumbnail, code, stock };
 
     this.#products.push(product);

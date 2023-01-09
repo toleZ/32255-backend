@@ -1,12 +1,21 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toleZ/32255-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toleZ/32255-backend/issues"
+  },
+  "homepage": "https://github.com/toleZ/32255-backend#readme",
+  "description": ""
 }
