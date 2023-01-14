@@ -9,12 +9,12 @@ class ProductManager {
     if (!fs.existsSync(path)) fs.writeFileSync(path, JSON.stringify([]));
   }
 
-  getProducts = () => {
+  getProducts = async () => {
     const res = fs.readFileSync(this.path, "utf-8");
     return JSON.parse(res);
   };
 
-  getProductById = (prodId) => {
+  getProductById = async (prodId) => {
     const res = fs.readFileSync(this.path, "utf-8");
     const product = JSON.parse(res).find((prod) => prod.id == prodId);
 
@@ -24,7 +24,7 @@ class ProductManager {
     else return product;
   };
 
-  addProduct = (product) => {
+  addProduct = async (product) => {
     const products = this.getProducts();
 
     while (products.some((prod) => prod.id === this.#id)) this.#id++;
@@ -35,7 +35,7 @@ class ProductManager {
     fs.writeFileSync(this.path, JSON.stringify(products));
   };
 
-  updateProduct = (prodId, toUpdate) => {
+  updateProduct = async (prodId, toUpdate) => {
     const prodExist = this.getProductById(prodId);
 
     if (!prodExist) throw Error(`No encontre el producto con id:${prodId}`);
@@ -50,7 +50,7 @@ class ProductManager {
     }
   };
 
-  deleteProduct = (prodId) => {
+  deleteProduct = async (prodId) => {
     const products = this.getProducts();
     const productIndex = products.findIndex((prod) => prod.id === prodId);
 
