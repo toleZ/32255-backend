@@ -17,9 +17,11 @@ app.get("/products", async (req, res) => {
 
 app.get("/products/:pid", async (req, res) => {
   const { pid } = req.params;
-  const prod = await Products.getProductById(pid);
 
-  if (!prod)
-    res.status(404).json({ error: `Cannot get the product with id:${pid}` });
-  else res.status(200).json(prod);
+  try {
+    const prod = await Products.getProductById(pid);
+    res.status(200).json(prod);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 });

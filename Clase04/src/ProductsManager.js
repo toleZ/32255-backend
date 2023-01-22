@@ -18,9 +18,7 @@ class ProductManager {
     const res = fs.readFileSync(this.path, "utf-8");
     const product = JSON.parse(res).find((prod) => prod.id == prodId);
 
-    if (!product)
-      throw Error(`
-    No encontre el producto con id:${prodId}`);
+    if (!product) throw Error(`No encontre el producto con id: ${prodId}`);
     else return product;
   };
 
