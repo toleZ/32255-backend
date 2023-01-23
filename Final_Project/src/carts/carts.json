@@ -1,0 +1,9 @@
+[
+  {
+    "id": 0,
+    "products": [
+      { "id": 1, "name": "Mice", "price": 90, "stock": 1, "quantity": 2 },
+      { "id": 2, "name": "Mousepad", "price": 35, "stock": 12, "quantity": 3 }
+    ]
+  }
+]
