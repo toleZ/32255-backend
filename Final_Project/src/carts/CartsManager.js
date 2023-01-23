@@ -23,12 +23,10 @@ class CartsManager {
     return cart;
   };
 
-  createCart = () => {
+  createCart = (cid) => {
     const carts = this.getCarts();
 
-    while (carts.some((cart) => Number(cart.id) === this.#id)) this.#id++;
-
-    const newCart = { id: this.#id, products: [] };
+    const newCart = { id: cid, products: [] };
 
     carts.push(newCart);
     fs.writeFileSync(this.path, JSON.stringify(carts));
@@ -37,9 +35,11 @@ class CartsManager {
   };
 
   addProductToCart = (cid, { pid, quantity }) => {
-    const carts = this.getCarts();
-    const cart = carts.find((cart) => cart.id === cid);
+    let carts = this.getCarts();
+    const cart =
+      carts.find((cart) => cart.id === cid) ?? this.createCart(Number(cid));
 
+    carts = this.getCarts();
     const prod = Products.getProductById(pid);
 
     if (!cart.products.some((p) => p.id === pid))

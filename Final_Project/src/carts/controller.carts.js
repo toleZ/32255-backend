@@ -12,19 +12,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
-  try {
-    const cart = Carts.createCart();
-    res
-      .status(200)
-      .json(
-        cart && { message: `Se ha generado el carrito con el id: ${cart.id}` }
-      );
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-});
-
 router.get("/:cid", async (req, res) => {
   const { cid } = req.params;
   try {
