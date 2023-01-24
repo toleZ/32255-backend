@@ -1,5 +1,22 @@
 const fs = require("fs");
 
+const prodProto = {
+  title: "string",
+  description: "string",
+  code: "string",
+  price: "number",
+  status: "boolean",
+  stock: "number",
+  category: "string",
+};
+
+const checkParams = (proto, prod) => {
+  Object.entries(proto).forEach((entrie) => {
+    if (typeof prod[entrie[0]] !== entrie[1])
+      throw Error(`${prod[entrie[0]]} must be need a type: ${entrie[1]}`);
+  });
+};
+
 class ProductManager {
   #id = 0;
 
@@ -27,7 +44,13 @@ class ProductManager {
 
     while (products.some((prod) => prod.id === this.#id)) this.#id++;
 
-    const newProduct = { id: this.#id, ...product };
+    const newProduct = {
+      id: this.#id,
+      ...product,
+      status: (product.status ??= true),
+    };
+
+    checkParams(prodProto, product);
 
     products.push(newProduct);
     fs.writeFileSync(this.path, JSON.stringify(products));
