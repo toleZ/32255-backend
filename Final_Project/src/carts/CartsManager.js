@@ -18,9 +18,11 @@ class CartsManager {
   getCartById = (cid) => {
     const carts = fs.readFileSync(this.path, "utf-8");
     const cart = JSON.parse(carts).find((cart) => cart.id === cid);
-
     if (!cart) throw Error(`No encontre el carrito con id: ${cid}`);
-    return cart;
+
+    return cart.products.map(({ productId }) =>
+      Products.getProductById(productId)
+    );
   };
 
   createCart = (cid) => {
