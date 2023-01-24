@@ -1,15 +1,1 @@
-[
-  {
-    "id": 0,
-    "products": [
-      { "id": 1, "name": "Mice", "price": 90, "stock": 1, "quantity": 2 },
-      { "id": 2, "name": "Mousepad", "price": 35, "stock": 12, "quantity": 3 }
-    ]
-  },
-  {
-    "id": 1,
-    "products": [
-      { "id": 6, "name": "Webcam", "price": 85, "stock": 3, "quantity": 2 }
-    ]
-  }
-]
+[{"id":0,"products":[{"productId":1,"quantity":4}]}]

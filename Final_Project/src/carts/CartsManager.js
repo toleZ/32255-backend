@@ -34,19 +34,19 @@ class CartsManager {
     return newCart;
   };
 
-  addProductToCart = (cid, { pid, quantity }) => {
+  addProductToCart = (cid, { pid, quantity = 1 }) => {
     let carts = this.getCarts();
     const cart =
       carts.find((cart) => cart.id === cid) ?? this.createCart(Number(cid));
 
     carts = this.getCarts();
-    const prod = Products.getProductById(pid);
+    const { id } = Products.getProductById(pid);
 
-    if (!cart.products.some((p) => p.id === pid))
-      cart.products.push({ ...prod, quantity: 0 });
+    if (!cart.products.some((p) => p.productId === pid))
+      cart.products.push({ productId: id, quantity: 0 });
 
     cart.products.map((p) =>
-      Number(p.id) === Number(pid)
+      Number(p.productId) === Number(pid)
         ? { ...p, quantity: (p.quantity += Number(quantity)) }
         : p
     );
