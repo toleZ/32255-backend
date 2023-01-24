@@ -89,6 +89,6 @@ class ProductManager {
   };
 }
 
-const Products = new ProductManager("products/products.json");
+const Products = new ProductManager(__dirname + "/products.json");
 
 module.exports = Products;

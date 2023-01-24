@@ -60,6 +60,6 @@ class CartsManager {
   };
 }
 
-const Carts = new CartsManager("carts/carts.json");
+const Carts = new CartsManager(__dirname + "/carts.json");
 
 module.exports = Carts;
