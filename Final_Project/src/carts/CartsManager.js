@@ -28,7 +28,9 @@ class CartsManager {
   createCart = (cid) => {
     const carts = this.getCarts();
 
-    const newCart = { id: cid, products: [] };
+    while (carts.some((prod) => prod.id === this.#id)) this.#id++;
+
+    const newCart = { id: (cid ??= this.#id), products: [] };
 
     carts.push(newCart);
     fs.writeFileSync(this.path, JSON.stringify(carts));
