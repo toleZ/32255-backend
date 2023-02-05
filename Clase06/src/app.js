@@ -24,5 +24,7 @@ export const products = [];
 socketServer.on("connection", (socket) => {
   console.log(`New client connected with id: ${socket.id}`);
 
-  socket.on("newProduct", (prod) => products.push(prod));
+  socket.on("newProduct", (prod) => {
+    socketServer.emit("newProductAdded", prod);
+  });
 });
